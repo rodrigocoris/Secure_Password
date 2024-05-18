@@ -6,10 +6,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validación de la contraseña
     if ($password !== $confirm_password) {
-        die("Las contraseñas no coinciden.");
+        echo "Las contraseñas no coinciden.";
+        exit;
     }
     if (strlen($password) < 8 || !preg_match("/[A-Z]/", $password) || !preg_match("/[\W]/", $password)) {
-        die("La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un carácter especial.");
+        echo "La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un carácter especial.";
+        exit;
     }
 
     // Encriptación de la contraseña
@@ -19,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = new mysqli("localhost", "root", "", "registro_usuarios");
 
     if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
+        echo "Conexión fallida: " . $conn->connect_error;
+        exit;
     }
 
     // Insertar el usuario en la base de datos
