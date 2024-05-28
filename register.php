@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insertar el usuario en la base de datos
-    $stmt = $conn->prepare("INSERT INTO usuarios (username, password) VALUES (?, ?)");
+    $stmt = $conn->prepare("INSERT INTO usuarios (email, password) VALUES (?, ?)");
     $stmt->bind_param("ss", $username, $hashed_password);
 
     if ($stmt->execute()) {
